@@ -1,0 +1,12 @@
+# dependencies
+node_modules/
+
+# dotenv
+.env
+
+# logs
+*.log
+
+# system
+.DS_Store
+Thumbs.db

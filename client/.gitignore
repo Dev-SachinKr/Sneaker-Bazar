@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# production
+dist/
+
+# tailwind
+*.css.map
+
+# dotenv
+.env
+
+# logs
+*.log
+
+# system
+.DS_Store

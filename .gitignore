@@ -1,0 +1,24 @@
+# Node modules (in subfolders)
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output
+dist/
+build/
+
+# Editor settings
+.vscode/
+.idea/
+*.swp
