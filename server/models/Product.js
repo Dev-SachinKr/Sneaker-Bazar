@@ -18,10 +18,10 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Brand is required'],
     },
-    size: {
-      type: [Number], // e.g. [7, 8, 9]
-      required: true,
-    },
+    size: [{
+       type: Number, 
+       required: true 
+      }],
     category: {
       type: String,
       required: true,

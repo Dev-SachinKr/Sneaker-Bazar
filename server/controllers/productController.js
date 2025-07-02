@@ -14,6 +14,9 @@ const getProducts = async (req, res) => {
 // @desc    Create a new product (Admin)
 const createProduct = async (req, res) => {
   try {
+    if (typeof req.body.size === 'string') {
+      req.body.size = req.body.size.split(',').map(num => Number(num.trim()));
+    }
     const product = new Product(req.body);
     await product.save();
     res.status(201).json(product);

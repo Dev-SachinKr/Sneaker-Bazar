@@ -1,17 +1,25 @@
 import React from 'react';
+import { useCart } from '../context/CartContext';
+import { toast } from 'react-hot-toast';
+
 
 const ProductCard = ({ product }) => {
+  const { addToCart } = useCart();
+
   return (
-    <div className="bg-white shadow-md rounded-md p-4 hover:shadow-lg transition duration-300">
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-56 object-contain mb-4"
-      />
-      <h2 className="text-lg font-semibold">{product.name}</h2>
-      <p className="text-sm text-gray-600 mb-2">{product.brand}</p>
-      <p className="text-xl font-bold text-indigo-600">₹{product.price}</p>
-      <button className="mt-3 w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">
+    <div className="border p-4 rounded-md shadow">
+      <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
+      <h2 className="font-bold mt-2">{product.name}</h2>
+      <p>₹{product.price.toFixed(2)}</p>
+      <button
+        onClick={() => {
+          addToCart(product);
+          toast.success('Item added to cart!');
+        }}
+        
+        className="mt-2 bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+        
+      >
         Add to Cart
       </button>
     </div>
