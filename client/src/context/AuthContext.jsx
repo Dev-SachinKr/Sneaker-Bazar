@@ -7,22 +7,22 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const fetchUser = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
+  const token = localStorage.getItem('token');
+  if (!token) {
+    setUser(null);
+    return; 
+  }
 
-      const res = await axios.get('/auth/me', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  try {
+    const res = await axios.get('/auth/me');
+    if (!res.data || !res.data._id) throw new Error('User not found in response');
+    setUser(res.data);
+  } catch (err) {
+    console.error('Auth error:', err);
+    setUser(null);
+  }
+};
 
-      setUser(res.data.user || res.data); // depending on backend response shape
-    } catch (err) {
-      console.error('Auth error:', err);
-      setUser(null);
-    }
-  };
 
   const login = async (email, password) => {
     try {
@@ -31,7 +31,10 @@ export const AuthProvider = ({ children }) => {
       await fetchUser();
       return { success: true };
     } catch (err) {
-      return { success: false, message: err.response?.data?.message || 'Login failed' };
+      return {
+        success: false,
+        message: err.response?.data?.message || 'Login failed',
+      };
     }
   };
 
@@ -42,7 +45,10 @@ export const AuthProvider = ({ children }) => {
       await fetchUser();
       return { success: true };
     } catch (err) {
-      return { success: false, message: err.response?.data?.message || 'Registration failed' };
+      return {
+        success: false,
+        message: err.response?.data?.message || 'Registration failed',
+      };
     }
   };
 
@@ -52,7 +58,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchUser();
+    fetchUser(); // on mount
   }, []);
 
   return (
@@ -62,7 +68,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook for easy use
+// Custom hook
 export const useAuth = () => useContext(AuthContext);
 
 export default AuthContext;

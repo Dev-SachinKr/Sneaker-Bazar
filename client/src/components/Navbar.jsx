@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext'; // ✅ Correct import
 import { useCart } from '../context/CartContext';
 import { toast } from 'react-hot-toast';
 
 const Navbar = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout } = useAuth();
   const { cartItems } = useCart();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    toast.success("Logged out successfully");
+    toast.success('Logged out successfully');
     navigate('/login');
   };
 
@@ -24,13 +24,10 @@ const Navbar = () => {
       <div className="flex gap-4 items-center">
         <Link to="/" className="hover:text-yellow-300">Home</Link>
         <Link to="/products" className="hover:text-yellow-300">Products</Link>
-        <Link to="/cart" className="hover:text-yellow-300 relative">
-          Cart
-          {cartItems.length > 0 && (
-            <span className="absolute -top-2 -right-3 bg-red-600 text-xs rounded-full px-2">
-              {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
-            </span>
-          )}
+        <Link to="/cart" className="hover:text-yellow-300">
+          Cart <span className="ml-1 bg-yellow-500 text-black px-2 py-0.5 rounded text-sm">
+            {cartItems?.length || 0}
+          </span>
         </Link>
 
         {user?.role === 'admin' && (
@@ -46,7 +43,7 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <span className="text-sm text-gray-300">Hi, {user.name.split(" ")[0]}</span>
+            <span className="text-sm text-gray-300">Hi, {user?.name?.split(' ')[0]}</span>
             <button
               onClick={handleLogout}
               className="ml-2 bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-sm"

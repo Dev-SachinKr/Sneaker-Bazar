@@ -11,14 +11,14 @@ import { CartProvider } from './context/CartContext';
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <CartProvider>
-      <BrowserRouter>
-        <AuthProvider>
+  // <StrictMode>
+    <BrowserRouter>
+      <AuthProvider>
+        <CartProvider>
           <Toaster position="top-center"  />
-          <App />
-        </AuthProvider>
-      </BrowserRouter>
-    </CartProvider>
-  </StrictMode>,
+          <App/>
+        </CartProvider>
+      </AuthProvider>
+    </BrowserRouter>
+  // </StrictMode>,
 );
