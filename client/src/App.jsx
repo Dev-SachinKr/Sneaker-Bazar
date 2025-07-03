@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import AddProduct from './pages/AddProduct';
 import AdminDashboard from './pages/AdminDashboard';
+import EditProduct from './pages/EditProduct';
 
 const App = () => {
   const { user } = useAuth();
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/admin/edit/:id" element={<EditProduct />} />
         <Route path="/admin" element={user?.role === 'admin' ? (  <AdminDashboard />) : (  <Navigate to="/" />)}
       />
       </Routes>

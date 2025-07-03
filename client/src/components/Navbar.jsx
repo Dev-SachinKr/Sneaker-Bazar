@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; // ✅ Correct import
+import { useAuth } from '../context/AuthContext'; 
 import { useCart } from '../context/CartContext';
 import { toast } from 'react-hot-toast';
 
@@ -31,9 +31,8 @@ const Navbar = () => {
         </Link>
 
         {user?.role === 'admin' && (
-          <Link to="/admin" className="hover:text-yellow-300 font-semibold">
-            Admin
-          </Link>
+          <Link to="/admin" className="hover:text-yellow-300 font-semibold">Admin</Link>
+          
         )}
 
         {!user ? (
