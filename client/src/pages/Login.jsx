@@ -11,12 +11,14 @@ const Login = () => {
     password: '',
   });
 
+  const [showDemo, setShowDemo] = useState(false); //  for demo credentials
+
   useEffect(() => {
     if (user) navigate('/');
   }, [user, navigate]);
 
   const handleChange = (e) => {
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
@@ -24,7 +26,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const { email, password } = formData;
 
     if (!email || !password) {
@@ -41,12 +42,38 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-semibold mb-6 text-center">Login</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
+      <div className="w-full max-w-md bg-gray-800 rounded-xl shadow-2xl p-8 text-gray-100">
+        <h2 className="text-4xl font-extrabold mb-6 text-yellow-400 text-center tracking-wide">
+          Login
+        </h2>
+
+        {/*  Show/Hide Button */}
+        <div className="mb-5 text-center">
+          <button
+            type="button"
+            onClick={() => setShowDemo(!showDemo)}
+            className="text-sm font-medium text-yellow-300 hover:text-yellow-500 transition duration-200 cursor-pointer"
+          >
+            {showDemo ? 'Hide Demo Admin Credentials' : 'Click Me to Show Demo Admin Credentials'}
+          </button>
+        </div>
+
+        {/*  Demo Credentials Box */}
+        {showDemo && (
+          <div className="mb-6 bg-gray-700 border-2 border-yellow-400 rounded-xl p-5 shadow-md transition duration-300">
+            <h3 className="text-lg font-semibold text-yellow-300 mb-2 text-center">🛠 Admin Test Account</h3>
+            <div className="space-y-1 text-sm tracking-wide text-gray-100 text-center">
+              <p><span className="font-medium text-yellow-200">Email:</span> <code className="text-yellow-100">admin@demo.com</code></p>
+              <p><span className="font-medium text-yellow-200">Password:</span> <code className="text-yellow-100">Admin@123</code></p>
+            </div>
+          </div>
+        )}
+
+        {/*  Login Form */}
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
+            <label className="block text-sm font-medium text-gray-300 mb-1">Email</label>
             <input
               type="email"
               name="email"
@@ -54,11 +81,11 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-200"
+              className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Password</label>
+            <label className="block text-sm font-medium text-gray-300 mb-1">Password</label>
             <input
               type="password"
               name="password"
@@ -66,12 +93,12 @@ const Login = () => {
               value={formData.password}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-200"
+              className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition"
+            className="w-full bg-yellow-400 text-gray-900 font-bold py-3 rounded-lg shadow-md hover:bg-yellow-500 transition"
           >
             Login
           </button>

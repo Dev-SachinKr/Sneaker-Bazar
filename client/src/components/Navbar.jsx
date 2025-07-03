@@ -16,40 +16,53 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-900 text-white px-6 py-4 flex justify-between items-center shadow">
-      <Link to="/" className="text-2xl font-bold text-yellow-400">
+    <nav className="bg-gray-800 text-white px-6 py-4 flex justify-between items-center shadow-md sticky top-0 z-50">
+      <Link to="/" className="text-2xl font-extrabold text-yellow-400 hover:text-yellow-500 transition">
         Sneaker-Bazar
       </Link>
 
-      <div className="flex gap-4 items-center">
-        <Link to="/" className="hover:text-yellow-300">Home</Link>
-        <Link to="/products" className="hover:text-yellow-300">Products</Link>
-        <Link to="/cart" className="hover:text-yellow-300">
-          Cart <span className="ml-1 bg-yellow-500 text-black px-2 py-0.5 rounded text-sm">
+      <div className="flex gap-8 items-center text-sm font-medium">
+        <Link to="/" className="hover:text-yellow-400 transition">
+          Home
+        </Link>
+        <Link to="/products" className="hover:text-yellow-400 transition">
+          Products
+        </Link>
+        <Link to="/cart" className="relative hover:text-yellow-400 transition flex items-center">
+          Cart
+          <span className="ml-1 bg-yellow-400 text-gray-900 px-2 py-0.5 rounded-full text-xs font-semibold shadow-md">
             {cartItems?.length || 0}
           </span>
         </Link>
 
         {user?.role === 'admin' && (
-          <Link to="/admin" className="hover:text-yellow-300 font-semibold">Admin</Link>
-          
+          <Link
+            to="/admin"
+            className="border border-yellow-400 rounded px-3 py-1 hover:bg-yellow-400 hover:text-gray-900 transition font-semibold"
+          >
+            Admin
+          </Link>
         )}
 
         {!user ? (
           <>
-            <Link to="/login" className="hover:text-yellow-300">Login</Link>
-            <Link to="/register" className="hover:text-yellow-300">Register</Link>
+            <Link to="/login" className="hover:text-yellow-400 transition">
+              Login
+            </Link>
+            <Link to="/register" className="hover:text-yellow-400 transition">
+              Register
+            </Link>
           </>
         ) : (
-          <>
-            <span className="text-sm text-gray-300">Hi, {user?.name?.split(' ')[0]}</span>
+          <div className="flex items-center space-x-4">
+            <span className="text-yellow-300 font-semibold">Hi, {user?.name?.split(' ')[0]}</span>
             <button
               onClick={handleLogout}
-              className="ml-2 bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-sm"
+              className="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-sm transition"
             >
               Logout
             </button>
-          </>
+          </div>
         )}
       </div>
     </nav>

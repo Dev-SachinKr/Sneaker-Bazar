@@ -38,92 +38,84 @@ const EditProduct = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  console.log("Token:", localStorage.getItem('token'));
+    e.preventDefault();
 
-  const payload = {
-    ...formData,
-    size: formData.size.split(',').map(s => Number(s.trim()))
+    const payload = {
+      ...formData,
+      size: formData.size.split(',').map(s => Number(s.trim())),
+    };
+
+    try {
+      await axios.put(`/products/${id}`, payload);
+      toast.success("Product updated");
+      navigate('/admin');
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Update failed");
+    }
   };
-
-  try {
-    await axios.put(`/products/${id}`, payload);
-    toast.success("Product updated");
-    navigate('/admin');
-  } catch (err) {
-    console.error("Update failed response:", err.response);
-    console.error("Update failed message:", err.message);
-    toast.error(err.response?.data?.message || err.message || "Update failed");
-  }
-};
-
 
   useEffect(() => {
     fetchProduct();
   }, [id]);
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white rounded shadow">
-      <h1 className="text-2xl font-bold mb-4">Edit Product</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          placeholder="Product Name"
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-
-        <input
-          type="number"
-          name="price"
-          value={formData.price}
-          placeholder="Price"
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-
-        <input
-          type="text"
-          name="image"
-          value={formData.image}
-          placeholder="Image URL"
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-
-        <input
-          type="text"
-          name="brand"
-          value={formData.brand}
-          placeholder="Brand"
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-
-        <input
-          type="text"
-          name="size"
-          value={formData.size}
-          placeholder="Sizes (comma separated)"
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
-        >
-          Update Product
-        </button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
+      <div className="w-full max-w-xl bg-gray-800 rounded-xl shadow-lg p-8 text-gray-100">
+        <h1 className="text-3xl font-extrabold mb-8 text-yellow-400 text-center tracking-wide">Edit Product</h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            placeholder="Product Name"
+            onChange={handleChange}
+            required
+            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+          />
+          <input
+            type="number"
+            name="price"
+            value={formData.price}
+            placeholder="Price"
+            onChange={handleChange}
+            required
+            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+          />
+          <input
+            type="text"
+            name="image"
+            value={formData.image}
+            placeholder="Image URL"
+            onChange={handleChange}
+            required
+            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+          />
+          <input
+            type="text"
+            name="brand"
+            value={formData.brand}
+            placeholder="Brand"
+            onChange={handleChange}
+            required
+            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+          />
+          <input
+            type="text"
+            name="size"
+            value={formData.size}
+            placeholder="Sizes (comma separated)"
+            onChange={handleChange}
+            required
+            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+          />
+          <button
+            type="submit"
+            className="w-full bg-yellow-400 text-gray-900 font-bold py-3 rounded-lg shadow-md hover:bg-yellow-500 transition"
+          >
+            Update Product
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

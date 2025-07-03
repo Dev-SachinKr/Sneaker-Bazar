@@ -34,65 +34,79 @@ const AdminDashboard = () => {
     }
   };
 
+  if (user?.role !== 'admin') {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 via-black to-gray-900 text-red-500 text-xl font-semibold">
+        Access denied. Admins only.
+      </div>
+    );
+  }
+
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 p-6 text-white">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-3xl font-extrabold tracking-tight">Admin Dashboard</h1>
+          <button
+            onClick={() => navigate('/admin/add-product')}
+            className="bg-blue-600 hover:bg-blue-700 transition rounded px-5 py-2 font-semibold shadow-md"
+          >
+            + Add Product
+          </button>
+        </div>
 
-      {user?.role !== 'admin' ? (
-        <p className="text-red-500">Access denied. Admins only.</p>
-      ) : (
-        <>
-          <div className="flex justify-end mb-4">
-            <button
-              onClick={() => navigate('/admin/add-product')}
-              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-            >
-              + Add Product
-            </button>
-          </div>
-
-          <table className="w-full border border-gray-200">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="p-2 border">Image</th>
-                <th className="p-2 border">Name</th>
-                <th className="p-2 border">Price</th>
-                <th className="p-2 border">Actions</th>
+        <div className="overflow-x-auto rounded-lg shadow-lg border border-gray-700 bg-gray-800">
+          <table className="w-full text-left text-sm md:text-base">
+            <thead className="bg-gray-700 text-gray-300 uppercase">
+              <tr>
+                <th className="p-3 border-r border-gray-600">Image</th>
+                <th className="p-3 border-r border-gray-600">Name</th>
+                <th className="p-3 border-r border-gray-600">Price</th>
+                <th className="p-3">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
-                <tr key={product._id} className="text-center">
-                  <td className="p-2 border">
+              {products.map(product => (
+                <tr
+                  key={product._id}
+                  className="border-t border-gray-700 hover:bg-gray-700 transition"
+                >
+                  <td className="p-3 border-r border-gray-600">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-16 h-16 object-cover mx-auto"
+                      className="w-16 h-16 object-cover rounded-md mx-auto"
                     />
                   </td>
-                  <td className="p-2 border">{product.name}</td>
-                  <td className="p-2 border">₹{product.price.toFixed(2)}</td>
-                  <td className="p-2 border space-x-2">
+                  <td className="p-3 border-r border-gray-600 font-semibold">{product.name}</td>
+                  <td className="p-3 border-r border-gray-600">₹{product.price.toFixed(2)}</td>
+                  <td className="p-3 space-x-2 flex justify-center">
                     <Link
                       to={`/admin/edit/${product._id}`}
-                      className="bg-yellow-500 text-white px-2 py-1 rounded text-sm"
+                      className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded shadow-sm transition font-semibold"
                     >
                       Edit
                     </Link>
-
                     <button
                       onClick={() => handleDelete(product._id)}
-                      className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                      className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded shadow-sm transition font-semibold"
                     >
                       Delete
                     </button>
                   </td>
                 </tr>
               ))}
+              {products.length === 0 && (
+                <tr>
+                  <td colSpan={4} className="text-center p-6 text-gray-400">
+                    No products found.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
 };

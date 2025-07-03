@@ -1,6 +1,6 @@
 const Product = require('../models/Product');
 
-// @desc    Get all products (Public)
+//    Get all products (Public)
 const getProducts = async (req, res) => {
   try {
     const products = await Product.find().sort({ createdAt: -1 });
@@ -11,7 +11,7 @@ const getProducts = async (req, res) => {
   }
 };
 
-// @desc    Create a new product (Admin)
+//    Create a new product (Admin)
 const createProduct = async (req, res) => {
   try {
     if (typeof req.body.size === 'string') {
@@ -26,7 +26,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-// @desc    Update a product (Admin)
+//    Update a product (Admin)
 const updateProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(
@@ -44,7 +44,7 @@ const updateProduct = async (req, res) => {
   }
 };
 
-// @desc    Delete a product (Admin)
+//    Delete a product (Admin)
 const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);

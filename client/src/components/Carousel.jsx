@@ -1,11 +1,22 @@
-// client/src/components/Carousel.jsx
-
 import React, { useEffect, useState } from 'react';
 
 const carouselImages = [
-  "https://graphicsfamily.com/wp-content/uploads/edd/2021/07/Free-Sports-Running-Shoes-Banner-Design.jpg",
-  "https://img.freepik.com/premium-vector/shoe-social-media-cover-banner-template-exclusive-collection-sneakers-facebook-cover-photo-design_755018-1873.jpg",
-  "https://mir-s3-cdn-cf.behance.net/project_modules/fs/caa5fb122810393.60e1c5d28640e.jpg"
+  {
+    url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    caption: "Unleash Speed. Elevate Style.",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1539185441755-769473a23570?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    caption: "Step Into The Future of Footwear",
+  },
+  {
+    url: "https://mir-s3-cdn-cf.behance.net/project_modules/fs/caa5fb122810393.60e1c5d28640e.jpg",
+    caption: "Bold. Sleek. Powerful.",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1518894781321-630e638d0742?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    caption: "Just See - WoW!!!"
+  }
 ];
 
 const Carousel = () => {
@@ -14,22 +25,45 @@ const Carousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent(prev => (prev + 1) % carouselImages.length);
-    }, 3000); // Change every 3 seconds
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="w-full h-[350px] overflow-hidden mb-10 rounded-md shadow relative">
-      {carouselImages.map((url, idx) => (
-        <img
+    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-xl shadow-xl bg-gray-900">
+      {carouselImages.map((item, idx) => (
+        <div
           key={idx}
-          src={url}
-          alt={`slide-${idx}`}
-          className={`w-full h-full object-fill absolute transition-opacity duration-1000 ${
-            idx === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            idx === current ? 'opacity-100 z-20' : 'opacity-0 z-10'
           }`}
-        />
+        >
+          <img
+            src={item.url}
+            alt={`slide-${idx}`}
+            className="w-full h-full object-cover"
+          />
+
+          {/*  Dark overlay + caption */}
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <h2 className="text-white text-2xl md:text-4xl font-extrabold text-center px-6 drop-shadow-xl">
+              {item.caption}
+            </h2>
+          </div>
+        </div>
       ))}
+
+      {/*  Dot Indicators */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30">
+        {carouselImages.map((_, idx) => (
+          <span
+            key={idx}
+            className={`w-3 h-3 rounded-full ${
+              idx === current ? 'bg-white scale-110' : 'bg-white/50'
+            } transition-all`}
+          />
+        ))}
+      </div>
     </div>
   );
 };

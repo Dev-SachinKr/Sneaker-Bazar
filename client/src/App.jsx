@@ -11,6 +11,9 @@ import Footer from './components/Footer';
 import AddProduct from './pages/AddProduct';
 import AdminDashboard from './pages/AdminDashboard';
 import EditProduct from './pages/EditProduct';
+import ErrorPage from './pages/ErrorPage'; 
+import ScrollToTop from './components/ScrollToTop';
+
 
 const App = () => {
   const { user } = useAuth();
@@ -18,6 +21,7 @@ const App = () => {
   return (
     <>
       <Navbar />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
@@ -25,10 +29,20 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/admin/add-product" element={<AddProduct />} />
         <Route path="/admin/edit/:id" element={<EditProduct />} />
-        <Route path="/admin" element={user?.role === 'admin' ? (  <AdminDashboard />) : (  <Navigate to="/" />)}
-      />
+        <Route
+          path="/admin"
+          element={
+            user?.role === 'admin' ? (
+              <AdminDashboard />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+        
+        {/* Catch-all 404 route */}
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
     </>
