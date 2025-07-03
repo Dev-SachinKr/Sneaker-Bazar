@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from '../utils/axios';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
   const { user } = useAuth();
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user?.role === 'admin') {
@@ -40,37 +41,57 @@ const AdminDashboard = () => {
       {user?.role !== 'admin' ? (
         <p className="text-red-500">Access denied. Admins only.</p>
       ) : (
-        <table className="w-full border border-gray-200">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="p-2 border">Image</th>
-              <th className="p-2 border">Name</th>
-              <th className="p-2 border">Price</th>
-              <th className="p-2 border">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product._id} className="text-center">
-                <td className="p-2 border">
-                  <img src={product.image} alt={product.name} className="w-16 h-16 object-cover mx-auto" />
-                </td>
-                <td className="p-2 border">{product.name}</td>
-                <td className="p-2 border">₹{product.price.toFixed(2)}</td>
-                <td className="p-2 border space-x-2">
-                 <Link to={`/admin/edit/${product._id}`} className="bg-yellow-500 text-white px-2 py-1 rounded text-sm">Edit</Link>
+        <>
+          <div className="flex justify-end mb-4">
+            <button
+              onClick={() => navigate('/admin/add-product')}
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              + Add Product
+            </button>
+          </div>
 
-                  <button
-                    onClick={() => handleDelete(product._id)}
-                    className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
-                  >
-                    Delete
-                  </button>
-                </td>
+          <table className="w-full border border-gray-200">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="p-2 border">Image</th>
+                <th className="p-2 border">Name</th>
+                <th className="p-2 border">Price</th>
+                <th className="p-2 border">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product._id} className="text-center">
+                  <td className="p-2 border">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-16 h-16 object-cover mx-auto"
+                    />
+                  </td>
+                  <td className="p-2 border">{product.name}</td>
+                  <td className="p-2 border">₹{product.price.toFixed(2)}</td>
+                  <td className="p-2 border space-x-2">
+                    <Link
+                      to={`/admin/edit/${product._id}`}
+                      className="bg-yellow-500 text-white px-2 py-1 rounded text-sm"
+                    >
+                      Edit
+                    </Link>
+
+                    <button
+                      onClick={() => handleDelete(product._id)}
+                      className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
       )}
     </div>
   );

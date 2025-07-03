@@ -28,7 +28,7 @@ const AddProduct = () => {
       size: sizeArray,
     };
     try {
-      const res = await axios.post('/products', form);
+      const res = await axios.post('/products', payload);
       toast.success('Product added successfully!');
       navigate('/products');
     } catch (err) {

@@ -25,6 +25,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/admin/add-product" element={<AddProduct />} />
         <Route path="/admin/edit/:id" element={<EditProduct />} />
         <Route path="/admin" element={user?.role === 'admin' ? (  <AdminDashboard />) : (  <Navigate to="/" />)}
       />
