@@ -64,7 +64,7 @@ const Login = () => {
           <div className="mb-6 bg-gray-700 border-2 border-yellow-400 rounded-xl p-5 shadow-md transition duration-300">
             <h3 className="text-lg font-semibold text-yellow-300 mb-2 text-center">🛠 Admin Test Account</h3>
             <div className="space-y-1 text-sm tracking-wide text-gray-100 text-center">
-              <p><span className="font-medium text-yellow-200">Email:</span> <code className="text-yellow-100">admin@demo.com</code></p>
+              <p><span className="font-medium text-yellow-200">Email:</span> <code className="text-yellow-100">admin@gmail.com</code></p>
               <p><span className="font-medium text-yellow-200">Password:</span> <code className="text-yellow-100">Admin@123</code></p>
             </div>
           </div>
