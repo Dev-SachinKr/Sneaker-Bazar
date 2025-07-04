@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from '../utils/axios';
 import { toast } from 'react-hot-toast';
 import { useCart } from '../context/CartContext';
+import ShimmerProductCard from '../components/ShimmerProductCard'; 
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -64,7 +65,13 @@ const Products = () => {
       </div>
 
       {/* Product Grid */}
-      {displayed.length === 0 ? (
+      {products.length === 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+          {Array.from({ length: 8 }).map((_, index) => (
+            <ShimmerProductCard key={index} />
+          ))}
+        </div>
+      ) : displayed.length === 0 ? (
         <p className="text-center text-gray-400 text-lg mt-12">No products found.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
@@ -72,7 +79,7 @@ const Products = () => {
             <div
               key={product._id}
               className="bg-gray-850 border border-gray-700 rounded-2xl overflow-hidden shadow-2xl
-                         hover:scale-105 hover:shadow-yellow-500/50 transition-transform duration-300 group "
+                         hover:scale-105 hover:shadow-yellow-500/50 transition-transform duration-300 group"
             >
               <img
                 src={product.image}
