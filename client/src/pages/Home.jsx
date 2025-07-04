@@ -13,6 +13,7 @@ const Home = () => {
   const fetchProducts = async () => {
     try {
       const res = await axios.get('/products');
+      console.log("API Response:", res.data);
       setProducts(res.data);
     } catch (err) {
       console.error('Failed to fetch products:', err);
