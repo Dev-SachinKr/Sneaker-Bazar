@@ -3,15 +3,19 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-400 py-10 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-8">
         {/* Logo / Brand */}
-        <div className="mb-8 md:mb-0 text-center md:text-left">
-          <h2 className="text-white text-3xl font-extrabold tracking-wide">Sneaker-Bazar</h2>
-          <p className="text-gray-400 text-sm mt-2 italic">Your ultimate sneaker destination</p>
+        <div>
+          <h2 className="text-white text-2xl sm:text-3xl font-extrabold tracking-wide">
+            Sneaker-Bazar
+          </h2>
+          <p className="text-gray-400 text-sm mt-2 italic">
+            Your ultimate sneaker destination
+          </p>
         </div>
 
         {/* Links */}
-        <div className="flex space-x-8 mb-8 md:mb-0 text-lg font-medium">
+        <div className="flex flex-col sm:flex-row sm:space-x-8 gap-2 sm:gap-0 text-base font-medium items-center">
           <a href="#" className="hover:text-yellow-400 transition-colors duration-300">Home</a>
           <a href="#" className="hover:text-yellow-400 transition-colors duration-300">Shop</a>
           <a href="#" className="hover:text-yellow-400 transition-colors duration-300">About</a>
@@ -19,7 +23,7 @@ const Footer = () => {
         </div>
 
         {/* Social Icons */}
-        <div className="flex space-x-6 text-yellow-400">
+        <div className="flex space-x-6 justify-center text-yellow-400">
           <a href="#" aria-label="Facebook" className="hover:text-yellow-300 transition-colors duration-300">
             <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
               <path d="M22 12a10 10 0 1 0-11.5 9.8v-6.9H8v-2.9h2.5v-2.2c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.3.2 2.3.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6v1.8h2.8l-.4 2.9h-2.4v6.9A10 10 0 0 0 22 12"/>

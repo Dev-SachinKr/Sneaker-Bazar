@@ -30,7 +30,7 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-xl shadow-xl bg-gray-900">
+    <div className="relative w-full h-56 sm:h-72 md:h-96 lg:h-[500px] overflow-hidden rounded-xl shadow-xl bg-gray-900">
       {carouselImages.map((item, idx) => (
         <div
           key={idx}
@@ -44,16 +44,16 @@ const Carousel = () => {
             className="w-full h-full object-cover"
           />
 
-          {/*  Dark overlay + caption */}
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <h2 className="text-white text-2xl md:text-4xl font-extrabold text-center px-6 drop-shadow-xl">
+          {/* Dark overlay + caption */}
+          <div className="absolute inset-0 bg-black/60 flex items-center justify-center px-4 sm:px-6 md:px-10">
+            <h2 className="text-white text-lg sm:text-2xl md:text-4xl font-extrabold text-center drop-shadow-xl leading-tight">
               {item.caption}
             </h2>
           </div>
         </div>
       ))}
 
-      {/*  Dot Indicators */}
+      {/* Dot Indicators */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30">
         {carouselImages.map((_, idx) => (
           <span

@@ -40,12 +40,12 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
-      <div className="w-full max-w-xl bg-gray-800 rounded-xl shadow-lg p-8 text-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4 py-8">
+      <div className="w-full max-w-xl bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 text-gray-100">
         <h2 className="text-3xl font-extrabold mb-8 text-yellow-400 text-center tracking-wide">
           Add New Product
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
           <input
             type="text"
             name="name"
@@ -53,7 +53,7 @@ const AddProduct = () => {
             value={form.name}
             onChange={handleChange}
             required
-            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-3 py-2 sm:px-4 sm:py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
           />
           <input
             type="text"
@@ -62,7 +62,7 @@ const AddProduct = () => {
             value={form.brand}
             onChange={handleChange}
             required
-            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-3 py-2 sm:px-4 sm:py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
           />
           <input
             type="number"
@@ -72,7 +72,7 @@ const AddProduct = () => {
             onChange={handleChange}
             required
             min={0}
-            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-3 py-2 sm:px-4 sm:py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
           />
           <input
             type="text"
@@ -81,7 +81,7 @@ const AddProduct = () => {
             value={form.size}
             onChange={handleChange}
             required
-            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-3 py-2 sm:px-4 sm:py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
           />
           <input
             type="text"
@@ -90,7 +90,7 @@ const AddProduct = () => {
             value={form.category}
             onChange={handleChange}
             required
-            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-3 py-2 sm:px-4 sm:py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
           />
           <input
             type="text"
@@ -99,7 +99,7 @@ const AddProduct = () => {
             value={form.image}
             onChange={handleChange}
             required
-            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-3 py-2 sm:px-4 sm:py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
           />
           <textarea
             name="description"
@@ -108,7 +108,7 @@ const AddProduct = () => {
             onChange={handleChange}
             required
             rows={5}
-            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+            className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-3 py-2 sm:px-4 sm:py-3 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
           />
           <button
             type="submit"

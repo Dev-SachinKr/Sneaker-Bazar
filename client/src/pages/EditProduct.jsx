@@ -14,12 +14,17 @@ const EditProduct = () => {
     brand: '',
     size: '',
   });
+  const [loading, setLoading] = useState(true);
 
   const fetchProduct = async () => {
     try {
       const res = await axios.get(`/products`);
       const product = res.data.find(p => p._id === id);
-      if (!product) return toast.error('Product not found');
+      if (!product) {
+        toast.error('Product not found');
+        navigate('/admin');
+        return;
+      }
 
       setFormData({
         name: product.name,
@@ -30,6 +35,9 @@ const EditProduct = () => {
       });
     } catch (err) {
       toast.error('Failed to load product');
+      navigate('/admin');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -58,6 +66,14 @@ const EditProduct = () => {
     fetchProduct();
   }, [id]);
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-900 text-yellow-400 text-xl">
+        Loading product...
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
       <div className="w-full max-w-xl bg-gray-800 rounded-xl shadow-lg p-8 text-gray-100">
@@ -79,6 +95,7 @@ const EditProduct = () => {
             placeholder="Price"
             onChange={handleChange}
             required
+            min={0}
             className="w-full bg-gray-700 placeholder-gray-400 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
           />
           <input

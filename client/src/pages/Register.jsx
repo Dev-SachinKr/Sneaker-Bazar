@@ -46,12 +46,12 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
-      <div className="w-full max-w-md bg-gray-800 rounded-xl shadow-lg p-8 text-gray-100">
-        <h2 className="text-3xl font-extrabold mb-8 text-yellow-400 text-center tracking-wide">
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4 sm:px-6 py-8">
+      <div className="w-full max-w-md bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 text-gray-100">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-8 text-yellow-400 text-center tracking-wide">
           Register
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">Name</label>
             <input
@@ -90,7 +90,7 @@ const Register = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-yellow-400 text-gray-900 font-bold py-3 rounded-lg shadow-md hover:bg-yellow-500 transition"
+            className="w-full bg-yellow-400 text-gray-900 font-bold py-3 rounded-lg shadow-md hover:bg-yellow-500 transition text-sm sm:text-base"
           >
             Register
           </button>
