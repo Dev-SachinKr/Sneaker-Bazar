@@ -42,5 +42,4 @@ Sneaker-Bazar/
 │ ├── routes/
 │ └── index.js
 └── README.md
-<br>End with:
 ```
