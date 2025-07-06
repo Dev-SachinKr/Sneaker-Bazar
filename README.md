@@ -27,7 +27,8 @@
 ---
 
 ## 📂 Folder Structure
-
+<br>Start with:
+```
 Sneaker-Bazar/
 ├── client/ # React frontend (Vite)
 │ ├── src/
@@ -41,3 +42,5 @@ Sneaker-Bazar/
 │ ├── routes/
 │ └── index.js
 └── README.md
+<br>End with:
+```
