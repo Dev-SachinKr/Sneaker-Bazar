@@ -53,9 +53,9 @@ const Login = () => {
           <button
             type="button"
             onClick={() => setShowDemo(!showDemo)}
-            className="text-sm font-medium text-yellow-300 hover:text-yellow-500 transition duration-200 cursor-pointer"
+            className="text-sm font-medium text-red-500 hover:text-red-800 transition duration-200 cursor-pointer"
           >
-            {showDemo ? 'Hide Demo Admin Credentials' : 'Click Me to Show Demo Admin Credentials'}
+            {showDemo ? 'Hide Demo Admin Credentials' : 'CLICK ME for Demo Admin Credentials'}
           </button>
         </div>
 
