@@ -24,8 +24,12 @@ const Navbar = () => {
       to="/"
       className="text-2xl font-extrabold text-yellow-400 hover:text-yellow-500 transition flex items-center gap-2"
     >
-      Sneaker-Bazar👟
-      
+      Sneaker-Bazar
+      <img
+        src="https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1f45f.svg"
+        alt="Sneaker Emoji"
+        className="w-6 h-6 inline"
+      />
     </Link>
 
         {/* Mobile menu button */}
