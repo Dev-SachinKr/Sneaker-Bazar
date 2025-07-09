@@ -26,8 +26,7 @@ const Navbar = () => {
     >
       Sneaker-Bazar
       <img
-        // src="https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1f45f.svg"
-        src="./"
+        src="https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1f45f.svg"
         alt="Sneaker Emoji"
         className="w-6 h-6 inline"
       />
